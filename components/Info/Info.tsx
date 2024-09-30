@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, CardDescription, CardList, CardTitle, CompanyDescription, ContentWrapper, SectionContainer, Title } from './styles'
 import {infoData, infoDesc} from '../../lib/sections/infoData'
 import Button from '../MainButton/MainButton'
+import { MAIN_COLORS } from '@/lib/COLORS'
 
 
 const Info = () => {
@@ -12,7 +13,7 @@ const Info = () => {
             <CompanyDescription>
                 {infoDesc}
             </CompanyDescription>
-            <Button onClick={() => console.log('Navegando a la página de coches')}>
+            <Button onClick={() => console.log('Navegando a la página de coches')} color={MAIN_COLORS.TERCIARY}>
         Descubre nuestros coches
       </Button>
             </ContentWrapper>

@@ -1,4 +1,5 @@
 'use client'
+import { MAIN_COLORS } from '@/lib/COLORS';
 import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
@@ -42,13 +43,13 @@ export const CompanyDescription = styled.p`
 export const CardList = styled.div`
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Alinear tarjetas a la izquierda */
-    gap: 1.5rem; /* Espaciado entre las tarjetas */
-    width: 65%; /* Limitar el ancho en pantallas grandes */
+    justify-content: flex-start; 
+    gap: 1.5rem; 
+    width: 65%; 
 
     @media (max-width: 768px) {
-        width: 100%; /* Ancho completo en pantallas pequeñas */
-        justify-content: center; /* Centrar tarjetas en pantallas pequeñas */
+        width: 100%; 
+        justify-content: center; 
     }
 `;
 
@@ -56,8 +57,8 @@ export const Card = styled.div`
     display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: ${MAIN_COLORS.CARDS_BG};
+  border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
   border-radius: 8px;
   padding: 2rem;
   transition: transform 0.3s;

@@ -2,20 +2,22 @@
 import styled from 'styled-components';
 import {MAIN_COLORS} from '../../lib/COLORS'
 
-export const ButtonStyled = styled.button`
-  background-color: ${MAIN_COLORS.TERCIARY}; 
-  color: ${MAIN_COLORS.SECONDARY};
+interface ButtonProps {
+  color?: string;  
+}
+
+export const Button = styled.button<ButtonProps>`
+  padding: 0.75rem 1.5rem;
+  background-color: ${({ color }) => color || MAIN_COLORS.PRIMARY};  
+  color: #000;
   border: none;
-  padding: 14px 20px;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
   z-index: 2;
-  margin-top: 1rem;
 
   &:hover {
-    background-color: ${MAIN_COLORS.HOVER}; 
-
+    background-color: ${({ color }) => color ? MAIN_COLORS.HOVER : '#333'};  // Efecto hover en función del color: ;
   }
 `;

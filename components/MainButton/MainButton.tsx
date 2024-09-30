@@ -1,15 +1,16 @@
 import React from 'react';
-import { ButtonStyled } from './styles'; 
+import { Button } from './styles'; 
 
-const Button = ({ children, onClick }:{
+const MainButton = ({ children, onClick,color }:{
     children: React.ReactNode,
-    onClick: ()=> void
+    onClick: ()=> void,
+    color: string
 }) => {
   return (
-    <ButtonStyled >
+    <Button color={color}>
       {children}
-    </ButtonStyled>
+    </Button>
   );
 };
 
-export default Button;
+export default MainButton;
