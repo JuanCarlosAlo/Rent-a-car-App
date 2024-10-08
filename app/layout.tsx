@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import StyledComponentsRegistry from "@/GlobalStyles/registry";
 import "./globals.css";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 
 export const metadata: Metadata = {
@@ -18,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <StyledComponentsRegistry>
       <body>
+      <Header/>
         {children}
+        <Footer/>
       </body>
       </StyledComponentsRegistry>
     </html>

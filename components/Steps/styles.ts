@@ -14,37 +14,41 @@ export const StepContainer = styled.div`
     padding: 10% 1rem;
   }
 `;
+export const Title = styled.h2`
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-align: center;
+`;
 
-export const StepCard = styled.div<{ zigzag: boolean }>`
+export const StepCard = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'zigzag',
+})<{ zigzag: boolean }>`
   background-color: ${MAIN_COLORS.CARDS_BG};
   border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
   padding: 2rem;
-  border-radius: 8px;
+  border-radius: 1rem;
   display: flex;
   flex-direction: ${({ zigzag }) => (zigzag ? 'row-reverse' : 'row')}; 
   justify-content: space-between;
   align-items: flex-start;
   gap: 1rem;
-  &:hover{
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    box-shadow: ${MAIN_COLORS.CARDS_SHADOW};
   }
-  
-  /* Estilo en escritorio (zig-zag) */
+
   @media (min-width: 768px) {
     align-self: ${({ zigzag }) => (zigzag ? 'flex-end' : 'flex-start')};
-    width: 80%;
     height: 500px;
   }
 
-  /* En móvil, todas las cards estarán centradas */
   @media (max-width: 768px) {
     align-self: center;
     max-width: 100%;
     flex-direction: column;
     text-align: center;
   }
-  
-  
 `;
 
 export const StepContent = styled.div`

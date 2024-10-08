@@ -17,8 +17,13 @@
 
 html,
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   max-width: 100vw;
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  min-height: 100vh;
 }
 
 body {

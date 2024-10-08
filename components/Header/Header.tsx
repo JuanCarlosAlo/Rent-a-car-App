@@ -1,31 +1,51 @@
-'use client'
+'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation'; // Cambiamos a usePathname en lugar de useRouter
 import { HeaderContainer, Logo, MenuToggle, StyledNav } from './styles';
+import { NAV_ITEMS } from '../../lib/sections/navItems';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false); 
+    const pathname = usePathname(); // Usar usePathname para obtener la ruta actual
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
-    
 
     const handleScroll = () => {
-        if (window.scrollY > 0) {
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(false);
+        if (pathname === '/') { 
+            setIsScrolled(window.scrollY > 0);
         }
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        if (pathname === '/') { 
+            window.addEventListener('scroll', handleScroll);
+        }
+        else{
+            setIsScrolled(true)
+        }
+
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('scroll', handleScroll); 
         };
-    }, []);
+    }, [pathname]); 
+
+    const handleNavigation = (href: string) => {
+        setIsOpen(false); 
+    
+        if (href.startsWith('#')) {
+            const sectionId = href.substring(1);
+            const section = document.getElementById(sectionId);
+            
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    };
 
     return (
         <HeaderContainer scrolled={isScrolled}>
@@ -35,10 +55,13 @@ const Header = () => {
             </MenuToggle>
             <StyledNav open={isOpen} scrolled={isScrolled}>
                 <ul>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/vehicles">Vehículos</a></li>
-                    <li><a href="/about">Acerca de</a></li>
-                    <li><a href="/login">Iniciar sesión</a></li>
+                    {NAV_ITEMS.map(item => (
+                        <li key={item.title}>
+                            <Link href={item.href} onClick={() => handleNavigation(item.href)}>
+                                {item.title}
+                            </Link>
+                        </li>
+                    ))}
                 </ul>
             </StyledNav>
         </HeaderContainer>

@@ -1,13 +1,13 @@
-// components/Steps/Steps.tsx
 import React from 'react';
-import { StepContainer, StepCard, StepContent, StepTitle, StepDescription, StepImage } from './styles';
-import { stepsData } from '../../lib/sections/stepsData';
+import { StepContainer, StepCard, StepContent, StepTitle, StepDescription, StepImage, Title } from './styles';
+import { stepsData, stepsTitle } from '../../lib/sections/stepsData';
 import MainButton from '../MainButton/MainButton';
 import { MAIN_COLORS } from '@/lib/COLORS';
 
 const Steps = () => {
   return (
-    <StepContainer>
+    <StepContainer id='steps'>
+      <Title>{stepsTitle}</Title>
       {stepsData.map((step, index) => (
         <StepCard key={index} zigzag={index % 2 !== 0}>
           <StepContent>

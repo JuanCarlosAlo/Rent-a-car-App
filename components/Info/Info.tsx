@@ -1,15 +1,15 @@
 import React from 'react'
 import { Card, CardDescription, CardList, CardTitle, CompanyDescription, ContentWrapper, SectionContainer, Title } from './styles'
-import {infoData, infoDesc} from '../../lib/sections/infoData'
+import {infoData, infoDesc, infoTitle} from '../../lib/sections/infoData'
 import Button from '../MainButton/MainButton'
 import { MAIN_COLORS } from '@/lib/COLORS'
 
 
 const Info = () => {
   return (
-    <SectionContainer>
+    <SectionContainer id='info'>
         <ContentWrapper>
-            <Title>Que es Rac?</Title>
+            <Title>{infoTitle}</Title>
             <CompanyDescription>
                 {infoDesc}
             </CompanyDescription>
