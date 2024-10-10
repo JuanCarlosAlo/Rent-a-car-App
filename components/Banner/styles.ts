@@ -18,7 +18,9 @@ box-shadow: ${MAIN_COLORS.CARDS_SHADOW};
 export const BannerImage = styled.img`
 width: 40%;
 object-fit: cover;
-height: 400px;
+height: calc(400px - 2rem);
+margin: 1rem;
+border-radius: 1rem;
 `
 
 export const BannerTextWrap = styled.div`

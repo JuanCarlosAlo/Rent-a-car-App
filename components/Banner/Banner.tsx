@@ -1,7 +1,8 @@
 import {BannerContainer, BannerImage, BannerTextWrap} from "./styles"
 
 const Banner = () => {
-return<section>
+return(
+<section>
     <BannerContainer>
         <BannerTextWrap>
             <h1>BANNER TITLE</h1>
@@ -10,6 +11,7 @@ return<section>
         <BannerImage src="/assets/placeholder.jpg" alt="" />
     </BannerContainer>
 </section>
+)
 }
 
 export default Banner
