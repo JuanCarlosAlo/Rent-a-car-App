@@ -10,10 +10,10 @@ const Steps = () => {
       <Title>{stepsTitle}</Title>
       <StepCardsWrapper>
         {stepsData.map((step, index) => (
-          <StepCard key={index} image={step.image}> {/* Pasamos la URL de la imagen como prop */}
+          <StepCard key={index} image={step.image}> 
             <StepContentOverlay>
-              <StepTitle>{step.title}</StepTitle> {/* Título sobre la imagen de fondo */}
-              <StepDescription>{step.description}</StepDescription> {/* Descripción sobre la imagen de fondo */}
+              <StepTitle>{step.title}</StepTitle> 
+              <StepDescription>{step.description}</StepDescription> 
               <MainButton onClick={() => console.log('test')} color={MAIN_COLORS.TERCIARY}>
                 Descubre nuestros coches
               </MainButton>
