@@ -1,28 +1,79 @@
-"use client"
+"use client";
 
-import { MAIN_COLORS } from "@/lib/COLORS"
-import styled from "styled-components"
+import styled from "styled-components";
+import { MAIN_COLORS, MAIN_GRADIANTS } from "@/lib/COLORS";
 
 export const BannerContainer = styled.section`
-display: flex;
-align-items: center;
-justify-content: space-between;
-height: 400px;
-margin: 6rem;
-padding: 2REM;
-border-radius: 1rem;
-border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
-box-shadow: ${MAIN_COLORS.CARDS_SHADOW};
-`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 400px;
+  margin: 6rem 0;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
+  box-shadow: ${MAIN_COLORS.CARDS_SHADOW};
+  overflow: hidden; 
+  background: ${MAIN_GRADIANTS.SIDE_COLOR_GRADIENT};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    height: auto;
+    margin: 4rem 0;
+  }
+`;
 
 export const BannerImage = styled.img`
-width: 40%;
-object-fit: cover;
-height: calc(400px - 2rem);
-margin: 1rem;
-border-radius: 1rem;
-`
+  width: 50%;
+  object-fit: cover;
+  height: 100%; 
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05); 
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+`;
 
 export const BannerTextWrap = styled.div`
-width: 40%;
-`
+  width: 50%;
+  padding: 2rem; 
+  
+  
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2rem; 
+    font-weight: bold;
+    margin-bottom: 1rem; 
+  }
+
+  p {
+    margin-bottom: 1.5rem; 
+  }
+`;
+
+export const BannerButton = styled.button`
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: ${MAIN_COLORS.PRIMARY};
+  color: ${MAIN_COLORS.SECONDARY};
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: transparent;
+    border: 1px solid ${MAIN_COLORS.PRIMARY};
+    color:${MAIN_COLORS.PRIMARY};
+  }
+`;

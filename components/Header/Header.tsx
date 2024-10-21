@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation'; // Cambiamos a usePathname en lugar de useRouter
+import { usePathname } from 'next/navigation'; 
 import { HeaderContainer, Logo, MenuToggle, StyledNav } from './styles';
 import { NAV_ITEMS } from '../../lib/sections/navItems';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false); 
-    const pathname = usePathname(); // Usar usePathname para obtener la ruta actual
+    const pathname = usePathname(); 
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -26,7 +26,7 @@ const Header = () => {
             window.addEventListener('scroll', handleScroll);
         }
         else{
-            setIsScrolled(true)
+            setIsScrolled(true);
         }
 
         return () => {

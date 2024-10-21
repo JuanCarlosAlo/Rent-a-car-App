@@ -28,6 +28,8 @@ export const HeaderContainer = styled.header.withConfig({
   color: ${({ scrolled }) => (scrolled ? MAIN_COLORS.SECONDARY : 'white')};
   transition: background 0.3s ease;
   width: 100%;
+  height: 80px; /* Definimos una altura fija */
+  min-height: 80px; /* Reservamos el espacio para evitar solapamiento */
   z-index: 10;
 `;
 
@@ -86,7 +88,6 @@ export const StyledNav = styled.nav.withConfig({
     }
   }
 `;
-
 
 export const MenuToggle = styled.button.withConfig({
   shouldForwardProp: (prop) => prop !== 'scrolled',
