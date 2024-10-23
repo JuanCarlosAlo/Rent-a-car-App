@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MAIN_COLORS } from '../../lib/COLORS';
 
-// Definimos las interfaces para las props
+
 interface HeaderContainerProps {
   scrolled: boolean;
 }
@@ -15,7 +15,6 @@ interface NavProps {
   scrolled: boolean;
 }
 
-// Filtramos la prop scrolled antes de que llegue al DOM
 export const HeaderContainer = styled.header.withConfig({
   shouldForwardProp: (prop) => prop !== 'scrolled',
 })<HeaderContainerProps>`
@@ -30,7 +29,7 @@ export const HeaderContainer = styled.header.withConfig({
   width: 100%;
   height: 80px; /* Definimos una altura fija */
   min-height: 80px; /* Reservamos el espacio para evitar solapamiento */
-  z-index: 10;
+  z-index: 100;
 `;
 
 export const Logo = styled.div`
@@ -47,11 +46,11 @@ export const StyledNav = styled.nav.withConfig({
   position: absolute;
   top: 100%;
   left: 0;
-  max-height: ${({ open }) => (open ? '200px' : '0')};
+  max-height: ${({ open }) => (open ? 'auto' : '0')};
   overflow: hidden;
   transition: max-height 0.3s ease;
-  z-index: 1;
-  background-color: ${({ scrolled }) => (scrolled ? MAIN_COLORS.PRIMARY : 'transparent')};
+  z-index: 100;
+  background-color: ${({ open, scrolled }) => open ? MAIN_COLORS.PRIMARY : (scrolled ? MAIN_COLORS.PRIMARY : 'transparent')};
   width: 100vw;
 
   ul {
@@ -65,7 +64,7 @@ export const StyledNav = styled.nav.withConfig({
       padding: 1rem 2rem;
 
       a {
-        color: ${({ scrolled }) => (scrolled ? MAIN_COLORS.SECONDARY : MAIN_COLORS.PRIMARY)};
+        color: ${({ open, scrolled }) => open ? MAIN_COLORS.SECONDARY : (scrolled ? MAIN_COLORS.SECONDARY : MAIN_COLORS.PRIMARY)};
         text-decoration: none;
         transition: color 0.3s;
 
@@ -76,7 +75,7 @@ export const StyledNav = styled.nav.withConfig({
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     position: static;
     flex-direction: row;
     max-height: none;
@@ -100,7 +99,7 @@ export const MenuToggle = styled.button.withConfig({
   display: block;
   margin-left: 1rem;
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     display: none;
   }
 `;

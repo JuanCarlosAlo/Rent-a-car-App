@@ -25,7 +25,7 @@ export const BannerContainer = styled.section`
 
 export const BannerImage = styled.img`
   width: 50%;
-  object-fit: cover;
+  object-fit: contain;
   height: 100%; 
   transition: transform 0.3s;
 

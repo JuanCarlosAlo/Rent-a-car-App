@@ -28,7 +28,7 @@ const CarList = () => {
             <h4>{car.mileage > 0 ? 'Usado' : 'Nuevo'}</h4>
             <NameModelContainer>
               <CarName>{`${car.brand} ${car.model}`}</CarName>
-              <PriceTag>{`${car.price} ${car.divisa} / mes`}</PriceTag>
+              <PriceTag>{`${car.price} ${car.divisa}s`} <br /> / mes</PriceTag>
             </NameModelContainer>
             <p>{car.engineCapacity} {car.trimLevel}</p>
             <CarDetails>

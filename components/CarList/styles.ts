@@ -21,7 +21,7 @@ export const CarCard = styled.div`
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  max-width: 400px; 
+  max-width: 550px; 
   text-align: left;
   position: relative;
   transition: transform 0.2s;
@@ -37,12 +37,12 @@ export const CarCard = styled.div`
 
 export const CarImage = styled.img`
   width: 100%;
-  height: 200px; 
+  height: 300px; 
   object-fit: contain; 
 `;
 
 export const CarName = styled.h3`
-  font-size: 1.5rem;
+  font-size: 2rem;
 
   @media (max-width: 768px) {
     font-size: 1.2rem; 
@@ -85,7 +85,7 @@ export const CarDetails = styled.div`
   text-align: left;
 
   @media (max-width: 768px) {
-    font-size: 0.8rem; // Ajuste de tamaño para dispositivos más pequeños
+    font-size: 0.8rem; 
   }
 `;
 
@@ -95,8 +95,8 @@ export const CarAttributes = styled.div`
   margin: 10px 0;
 
   @media (max-width: 768px) {
-    flex-direction: column; // Cambia a columna en móviles
-    align-items: flex-start; // Alinear a la izquierda
+    flex-direction: column; 
+    align-items: flex-start; 
   }
 `;
 
@@ -108,7 +108,7 @@ export const CarAttribute = styled.span`
   color: #333;
 
   @media (max-width: 768px) {
-    margin-bottom: 5px; // Espacio entre atributos en móviles
+    margin-bottom: 5px; 
   }
 `;
 

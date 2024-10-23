@@ -47,7 +47,9 @@ export const StepCardsWrapper = styled.div`
 `;
 
 
-export const StepCard = styled.div<StepCardProps>`
+export const StepCard = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== 'image',
+})<StepCardProps>`
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
