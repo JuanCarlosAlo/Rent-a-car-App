@@ -50,3 +50,25 @@ a {
     color-scheme: dark;
   }
 } */
+
+.SliderContainer {
+  width: 550px; /* 100% del ancho de la ventana */
+  height: 300px; /* Ajusta la altura según tus necesidades */
+  overflow: visible; /* Oculta el desbordamiento para el slider */
+  position: relative; 
+  gap:2rem;
+}
+
+.SwiperSlide {
+  display: flex;
+  justify-content: center; /* Centrar el contenido del slide */
+}
+
+.CarImage {
+  width: 100%; /* Asegúrate de que la imagen ocupe todo el ancho del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.CarDetails {
+  text-align: center; /* Centrar el texto en los detalles del coche */
+}
