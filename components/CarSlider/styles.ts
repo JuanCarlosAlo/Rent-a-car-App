@@ -1,51 +1,80 @@
 'use client'
 import styled from 'styled-components';
 
+
 export const SliderContainer = styled.div`
+  width: 100%;
+  padding: 20px 0;
   display: flex;
-  width: 100%; 
-  position: relative; 
-  gap:2rem;
-  margin: 2rem 0;
- 
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 `;
 
-export const SliderCard = styled.div`
-  flex: 0 0 auto;
-  width:550px;
-  padding:2rem;
+export const CarCard = styled.div`
+  width:100%;
+  max-width: 700px;
+  background-color: #fff;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  transition: transform 0.3s;
-  background-color: #fff; 
-
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  
   &:hover {
-    transform: translateY(-5px); 
+    transform: scale(1.05);
   }
-`
+`;
 
 export const CarImage = styled.img`
-  width: 100%;
-  height: 200px;
-  object-fit: contain; /* Mantiene la proporción de la imagen */
+  width: 90%;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 4px;
 `;
 
 export const CarDetails = styled.div`
-  padding: 1rem;
-
   h3 {
-    font-size: 1.5rem;
-    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 10px 0 5px;
+    color: #333;
   }
 
   p {
-    margin: 0.25rem 0;
-    color: #555; /* Color de texto más suave */
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
   }
 `;
 
-export const PriceTag = styled.p`
+export const PriceTag = styled.div`
+  font-size: 1.4rem;
   font-weight: bold;
-  color: #333; /* Color más oscuro para el precio */
+  color: #000;
+  margin: 10px 0;
+
+  span {
+    font-size: 1rem;
+    color: #888;
+  }
+`;
+
+export const Button = styled.button`
+  padding: 12px 25px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #333;
+  }
 `;
