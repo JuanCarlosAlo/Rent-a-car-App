@@ -3,16 +3,6 @@ import styled from 'styled-components';
 import { MAIN_COLORS } from '@/lib/COLORS';
 
 
-interface StepData {
-  title: string;
-  description: string;
-  image: string;
-}
-
-
-interface StepCardProps {
-  image: string;
-}
 
 
 export const StepContainer = styled.section`
@@ -32,7 +22,6 @@ export const Title = styled.h2`
   text-align: center;
 `;
 
-
 export const StepCardsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,74 +29,77 @@ export const StepCardsWrapper = styled.div`
   width: 100%;
 
   @media (min-width: 768px) {
-    flex-direction: row;
-
-    justify-content: space-between; 
+    flex-direction: column;
+    gap: 3rem;
   }
 `;
 
-
-export const StepCard = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== 'image',
-})<StepCardProps>`
-  background-image: url(${(props) => props.image});
-  background-size: cover;
-  background-position: center;
+export const StepCard = styled.div`
+  display: flex;
+  flex-direction: column;
   border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
+
   overflow: hidden;
+  background: white;
   position: relative;
-  width: 100%; 
-  min-height: 450px;
-  color: white;
 
-  @media (min-width: 1024px) {
-    width: 100%;
-    min-width: 300px;
-  }
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
 
-
-
-  &:hover {
-    box-shadow: ${MAIN_COLORS.CARDS_SHADOW};
+    &:nth-child(odd) {
+      flex-direction: row-reverse;
+    }
   }
 `;
 
-
-export const StepContentOverlay = styled.div`
+export const StepContent = styled.div`
+  flex: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
+  justify-content: center;
+  padding: 2rem;
+
+  @media (min-width: 768px) {
+    padding: 3rem;
+  }
 `;
 
+export const StepImage = styled.img`
+  flex: 70%;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+
+
+  @media (min-width: 768px) {
+    height: 500px;
+    border-radius: 0;
+  }
+`;
 
 export const StepTitle = styled.h3`
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: white;
+  color: ${MAIN_COLORS.SECONDARY};
 `;
-
 
 export const StepDescription = styled.p`
   font-size: 1rem;
   margin-bottom: 1rem;
-  color: white;
-  text-align: center;
+  color: ${MAIN_COLORS.SECONDARY};
 `;
 
-export const ButtonWrapper = styled.div`
-  padding: 1rem;
-  text-align: center;
+export const MainButton = styled.button`
+  background: ${MAIN_COLORS.TERCIARY};
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+
+  &:hover {
+    background: ${MAIN_COLORS.HOVER};
+  }
 `;

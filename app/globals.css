@@ -51,3 +51,23 @@ a {
   }
 } */
 
+/* Selecciona los bullets directamente */
+
+.swiper .swiper-pagination {
+  margin-top: 60px; /* Añade un margen para mover los bullets hacia abajo */
+  position: relative; /* Asegúrate de que no estén fijados al slider */
+}
+.swiper .swiper-pagination .swiper-pagination-bullet {
+  width: 14px; /* Tamaño del bullet */
+  height: 14px; /* Tamaño del bullet */
+  background-color: #ccc; /* Color del bullet no activo */
+  border-radius: 3px; /* Ajusta para hacerlo cuadrado o con esquinas redondeadas */
+  opacity: 1; /* Asegúrate de que sean visibles */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Bullet activo */
+.swiper .swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #000; /* Color negro para el bullet activo */
+  transform: scale(1.2); /* Efecto de ampliación */
+}
