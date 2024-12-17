@@ -1,13 +1,14 @@
 import React from 'react';
 import { Button } from './styles'; 
 
-const MainButton = ({ children, onClick,color }:{
+const MainButton = ({ children, onClick,color,bgColor }:{
     children: React.ReactNode,
     onClick: ()=> void,
-    color: string
+    color: string,
+    bgColor:string,
 }) => {
   return (
-    <Button color={color}>
+    <Button $color={color} $bgColor={bgColor}>
       {children}
     </Button>
   );

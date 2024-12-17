@@ -1,8 +1,9 @@
 import React from 'react'
 import { Card, CardDescription, CardList, CardTitle, CompanyDescription, ContentWrapper, SectionContainer, Title } from './styles'
 import {infoData, infoDesc, infoTitle} from '../../lib/sections/infoData'
-import Button from '../MainButton/MainButton'
 import { MAIN_COLORS } from '@/lib/COLORS'
+import MainButton from '../MainButton/MainButton'
+
 
 
 const Info = () => {
@@ -13,9 +14,9 @@ const Info = () => {
             <CompanyDescription>
                 {infoDesc}
             </CompanyDescription>
-            <Button onClick={() => console.log('Navegando a la página de coches')} color={MAIN_COLORS.TERCIARY}>
+            <MainButton onClick={() => console.log('Navegando a la página de coches')} color={MAIN_COLORS.PRIMARY} bgColor={MAIN_COLORS.SECONDARY}>
         Descubre nuestros coches
-      </Button>
+      </MainButton>
             </ContentWrapper>
             <CardList>
                 {infoData.map((item, index) => (

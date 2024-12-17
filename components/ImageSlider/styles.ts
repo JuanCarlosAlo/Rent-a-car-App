@@ -24,7 +24,7 @@ export const SlideWrapper = styled.div<{ $translateX: number }>`
 export const Slide = styled.div`
   min-width: 100%;
   height: 100%;
-  background-size: contain;
+  background-size: 90%;
   background-position: center;
   background-repeat:no-repeat;
   
@@ -46,10 +46,10 @@ export const NavigationButton = styled.button`
   }
 
   &:first-of-type {
-    left: 10px;
+    left: 0px;
   }
 
   &:last-of-type {
-    right: 10px;
+    right: 0px;
   }
 `;

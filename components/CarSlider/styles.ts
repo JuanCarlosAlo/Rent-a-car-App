@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 export const SliderContainer = styled.div`
   width: 100%;
-  margin: 20px 0;
+  margin: 6rem 0;
   display: flex;
   justify-content: center;
   align-items: center;

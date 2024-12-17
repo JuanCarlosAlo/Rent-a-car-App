@@ -1,8 +1,9 @@
 import React from 'react';
 import { StepContainer, StepCard, StepTitle, StepCardsWrapper,  StepDescription,  Title, StepImage, StepContent } from './styles';
 import { stepsData, stepsTitle } from '../../lib/sections/stepsData';
-import MainButton from '../MainButton/MainButton';
+
 import { MAIN_COLORS } from '@/lib/COLORS';
+import MainButton from '../MainButton/MainButton';
 
 const Steps = () => {
   return (
@@ -16,7 +17,8 @@ const Steps = () => {
           <StepDescription>{step.description}</StepDescription>
           <MainButton
             onClick={() => console.log("test")}
-            color={MAIN_COLORS.TERCIARY}
+            color={MAIN_COLORS.PRIMARY}
+            bgColor={MAIN_COLORS.SECONDARY}
           >
             Descubre nuestros coches
           </MainButton>

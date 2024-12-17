@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import { MAIN_COLORS, MAIN_GRADIANTS } from "@/lib/COLORS";
+import { MAIN_COLORS } from "@/lib/COLORS";
 
 export const BannerContainer = styled.section`
   display: flex;
@@ -10,11 +10,9 @@ export const BannerContainer = styled.section`
   height: 400px;
   margin: 6rem 0;
   padding: 2rem;
-  border-radius: 1rem;
-  border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
-  box-shadow: ${MAIN_COLORS.CARDS_SHADOW};
-  overflow: hidden; 
-  background: ${MAIN_GRADIANTS.SIDE_COLOR_GRADIENT};
+  overflow: hidden;
+  
+
 
   @media (max-width: 768px) {
     flex-direction: column;

@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper'; 
 import 'swiper/swiper-bundle.css'; 
 import { Navigation, Autoplay, Pagination } from 'swiper/modules';
+import { MAIN_COLORS } from "@/lib/COLORS";
+import MainButton from "../MainButton/MainButton";
 
 SwiperCore.use([Autoplay, Navigation, Pagination]); 
 
@@ -24,8 +26,8 @@ const CarSlider = () => {
     <SliderContainer>
       <Swiper
         direction="horizontal"
-        spaceBetween={5}
-        slidesPerView={2} 
+        spaceBetween={50}
+        slidesPerView={3} 
         centeredSlides={true} 
         loop={true}
         autoplay={{
@@ -41,8 +43,6 @@ const CarSlider = () => {
         }}
         
         style={{padding: '2rem'}}
-        
-   
       >
         {carsToShow.map((car) => (
           <SwiperSlide key={car._id} >
@@ -52,8 +52,10 @@ const CarSlider = () => {
                 <h3>{`${car.brand} ${car.model}`}</h3>
                 <p>{car.trimLevel}</p>
               </CarDetails>
-              <PriceTag>{`${car.price} ${car.divisa}`}<span> / mes</span></PriceTag>
-              <Button>Encuentra tu coche</Button>
+              <PriceTag>{`${car.price} ${car.divisa}s`}<span> / mes</span></PriceTag>
+              <MainButton onClick={() => console.log('Navegando a la página de coches')} color={MAIN_COLORS.PRIMARY} bgColor={MAIN_COLORS.SECONDARY}>
+                Mas informacion
+              </MainButton>
             </CarCard>
           </SwiperSlide>
         ))}

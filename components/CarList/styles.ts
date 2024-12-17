@@ -6,7 +6,7 @@ import styled from 'styled-components';
 export const CarListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 2rem;
   justify-content: center;
   padding: 1rem;
 
@@ -18,7 +18,7 @@ export const CarListContainer = styled.div`
 
 export const CarCard = styled.div`
   background: #fff;
-  border-radius: 10px;
+
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   max-width: 550px; 

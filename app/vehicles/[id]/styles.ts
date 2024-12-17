@@ -5,10 +5,15 @@ import { MAIN_COLORS } from '@/lib/COLORS';
 
 export const CarDetailContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 40px;
-  background-color: #f5f5f5;
+  padding: 0 10rem;
+  justify-content: space-between;
+
+  @media (max-width: 768px) {
+      padding: 0 1rem;
+    }
+  
 `;
 
 export const CarImage = styled.img`
@@ -22,9 +27,8 @@ export const CarDetails = styled.div`
   width: 100%;
   max-width: 800px;
   background: #fff;
-  border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 2rem;
   margin-top: 20px;
 `;
 

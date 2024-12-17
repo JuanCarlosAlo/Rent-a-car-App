@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import {MAIN_COLORS} from '../../lib/COLORS'
 
 interface ButtonProps {
-  color?: string;  
+  $color?: string; 
+  $bgColor?: string; 
 }
 
 export const Button = styled.button<ButtonProps>`
   padding: 0.75rem 1.5rem;
-  background-color: ${({ color }) => color || MAIN_COLORS.PRIMARY};  
-  color: #000;
+  background-color: ${({ $bgColor }) => $bgColor || MAIN_COLORS.PRIMARY};  
+  color: ${({ $color }) => $color || MAIN_COLORS.PRIMARY}; 
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -18,6 +19,7 @@ export const Button = styled.button<ButtonProps>`
   z-index: 2;
 
   &:hover {
-    background-color: ${({ color }) => color ? MAIN_COLORS.HOVER : '#333'};  // Efecto hover en función del color: ;
+    background-color: ${MAIN_COLORS.HOVER};
+    color: ${MAIN_COLORS.PRIMARY};
   }
 `;

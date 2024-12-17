@@ -22,8 +22,6 @@ const CarDetailsPage = ({ params: { id } }: { params: { id: string } }) => {
   return (
     <MainContent>
       <CarDetailContainer>
-      
-        <Slider images={car.imgs} />
 
         <CarDetails>
           <DetailSection>
@@ -47,7 +45,13 @@ const CarDetailsPage = ({ params: { id } }: { params: { id: string } }) => {
             Alquilar por {car.price} {car.divisa} / mes
           </TransactionButton>
         </CarDetails>
+
+        <Slider images={car.imgs} />
+
+        
       </CarDetailContainer>
+
+      
     </MainContent>
   );
 };
