@@ -1,5 +1,4 @@
 import { CAR_LIST } from '../../../lib/carPh';
-import styled from 'styled-components';
 import {
   CarDetailContainer,
   CarDetails,
@@ -10,6 +9,8 @@ import {
 } from './styles';
 import MainContent from '@/components/MainContent/MainContent';
 import { Slider } from '@/components/ImageSlider/ImageSlider';
+import MainButton from '@/components/MainButton/MainButton';
+import { MAIN_COLORS } from '@/lib/COLORS';
 
 
 const CarDetailsPage = ({ params: { id } }: { params: { id: string } }) => {
@@ -41,9 +42,13 @@ const CarDetailsPage = ({ params: { id } }: { params: { id: string } }) => {
             </ul>
           </DetailSection>
 
-          <TransactionButton>
+          <MainButton onClick={()=> console.log('alquilar el coche')}
+          color={MAIN_COLORS.PRIMARY}
+          bgColor={MAIN_COLORS.SECONDARY}
+
+          >
             Alquilar por {car.price} {car.divisa} / mes
-          </TransactionButton>
+          </MainButton>
         </CarDetails>
 
         <Slider images={car.imgs} />

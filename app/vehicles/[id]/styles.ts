@@ -9,6 +9,7 @@ export const CarDetailContainer = styled.div`
   align-items: center;
   padding: 0 10rem;
   justify-content: space-between;
+  gap: 2rem;
 
   @media (max-width: 768px) {
       padding: 0 1rem;
