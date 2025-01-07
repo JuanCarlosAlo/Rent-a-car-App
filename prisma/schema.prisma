@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Car {
+  id              String   @id @default(uuid())
+  name            String
+  year            Int
+  description     String
+  brand           String
+  model           String
+  cover           String
+  transmition     String
+  fuel            String
+  isRented        Boolean
+  isOnsale        Boolean
+  price           Float
+  divisa          String
+  bodyType        String
+  mileage         Int
+  color           String
+  trimLevel       String
+  engineCapacity  Float
+  doors           Int
+  passengerCapacity Int
+  fuelConsumption String
+  location        String
+  condition       String
+  availabilityDate DateTime
+  features        CarFeatures[]
+  rating          Float
+
+  images          CarImage[]
+}
+
+model CarImage {
+  id      String   @id @default(uuid())
+  carId   String
+  url     String
+  car     Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model CarFeatures {
+  id        String   @id @default(uuid())
+  carId     String
+  feature   String
+  car       Car       @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
