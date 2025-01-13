@@ -1,18 +1,32 @@
+'use client'
+
 import React from "react";
-import { CAR_LIST } from "../../lib/carPh";
+
 
 import { BannerContainer, BannerImage, BannerTextWrap } from "./styles";
 import MainButton from "../MainButton/MainButton";
 import { MAIN_COLORS } from "@/lib/COLORS";
+import { useFetch } from "@/hooks/useFetch";
+import { Car } from "@/types/car";
 
-const getRandomCar = () => {
-  const randomIndex = Math.floor(Math.random() * CAR_LIST.length);
-  return CAR_LIST[randomIndex];
+const getRandomCar = (carsOnSale:Car[]) => {
+  const randomIndex = Math.floor(Math.random() * carsOnSale.length);
+  return carsOnSale[randomIndex];
 };
 
 const Banner = () => {
-  const carOnSale = CAR_LIST.find(car => car.isOnsale);
-  const car = carOnSale || getRandomCar();
+
+  const {
+    data: carsOnSale,
+    loading,
+    error,
+  } = useFetch<Car[]>("/api/cars/onSale");
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+  if (!carsOnSale) return <h1>Ther is no cars on sale right now</h1>;
+
+  const car =  getRandomCar(carsOnSale);
 
   return (
     <section>
@@ -20,7 +34,7 @@ const Banner = () => {
         <BannerTextWrap>
           <h1>{`Tu ${car.model} al precio mas bajo`}</h1>
           <p>{car.brand} {car.model} {car.engineCapacity} {car.trimLevel}</p>
-          <MainButton url={`/`} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
+          <MainButton url={`/vehicles/${car.id}`} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
             Ver Detalles
           </MainButton>
         </BannerTextWrap>
