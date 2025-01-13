@@ -14,7 +14,7 @@ const Hero = () => {
         Entrega a domicilio.<br />
         Prueba 15 días sin compromiso.<br />
         Conducción neutra de CO₂.</HeroDescripcion>
-      <Button onClick={() => console.log('Navegando a la página de coches')} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
+      <Button url={`/vehicles/`} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
         Descubre nuestros coches
       </Button>
       </HeroContent>

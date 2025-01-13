@@ -20,7 +20,7 @@ const Banner = () => {
         <BannerTextWrap>
           <h1>{`Tu ${car.model} al precio mas bajo`}</h1>
           <p>{car.brand} {car.model} {car.engineCapacity} {car.trimLevel}</p>
-          <MainButton onClick={() => console.log('Mas info')} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
+          <MainButton url={`/`} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
             Ver Detalles
           </MainButton>
         </BannerTextWrap>

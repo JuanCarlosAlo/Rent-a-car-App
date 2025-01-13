@@ -12,10 +12,11 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
         features: true,
       },
     });
-    return NextResponse.json(cars);  // Cambié "newCar" a "cars"
+    return NextResponse.json(cars);
   } catch (error) {
     return NextResponse.json({ error: 'Error fetching cars' });
   } finally {
     await prisma.$disconnect();
   }
 }
+

@@ -16,7 +16,7 @@ const Steps = () => {
           <StepTitle>{step.title}</StepTitle>
           <StepDescription>{step.description}</StepDescription>
           <MainButton
-            onClick={() => console.log("test")}
+            url={`/vehicles/`}
             color={MAIN_COLORS.PRIMARY}
             bgColor={MAIN_COLORS.SECONDARY}
           >

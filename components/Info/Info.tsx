@@ -14,7 +14,7 @@ const Info = () => {
             <CompanyDescription>
                 {infoDesc}
             </CompanyDescription>
-            <MainButton onClick={() => console.log('Navegando a la página de coches')} color={MAIN_COLORS.PRIMARY} bgColor={MAIN_COLORS.SECONDARY}>
+            <MainButton url={`/vehicles/`} color={MAIN_COLORS.PRIMARY} bgColor={MAIN_COLORS.SECONDARY}>
         Descubre nuestros coches
       </MainButton>
             </ContentWrapper>

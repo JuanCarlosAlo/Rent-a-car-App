@@ -12,8 +12,8 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     const car = await prisma.car.findUnique({
       where: { id },
       include: {
-        images: true, // Incluir las imágenes relacionadas
-        features: true, // Incluir las características relacionadas
+        images: true, 
+        features: true, 
       },
     });
 
@@ -21,7 +21,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
       return NextResponse.json({ error: 'Coche no encontrado' }, { status: 404 });
     }
 
-    return NextResponse.json(car); // Retornar el coche encontrado
+    return NextResponse.json(car); 
   } catch (error) {
     return NextResponse.json({ error: 'Error fetching car details' }, { status: 500 });
   } finally {
