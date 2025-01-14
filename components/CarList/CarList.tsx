@@ -1,61 +1,50 @@
-'use client'
+"use client";
 
 import React from 'react';
-import { CAR_LIST } from '../../lib/carPh'; 
 import Link from 'next/link';
-import {
-  CarListContainer,
-  CarCard,
-  CarImage,
-  CarInfo,
-  CarDetails,
-  PriceTag,
-  OfferBadge,
-  CarAttributes,
-  CarAttribute,
-  NameModelContainer,
-  CarName,
-} from './styles'; 
-import { useFetch } from '../../hooks/useFetch'; 
-
+import styles from './CarList.module.scss';
+import { useFetch } from '../../hooks/useFetch';
 import { Car } from '@/types/car';
-
-
+import DataFetcher from '../DataFetcher/DataFetcher'; 
 
 const CarList = () => {
-  const { data: cars, loading, error } = useFetch<Car[]>('/api/cars'); 
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  const { data: cars, loading, error } = useFetch<Car[]>('/api/cars');
 
   return (
-    <CarListContainer>
-      {cars?.map((car) => (
-        <CarCard key={car.id}>
-          {car.isOnsale && <OfferBadge>¡Oferta!</OfferBadge>}
-          <Link href={`/vehicles/${car.id}`}>
-            <CarImage src={car.cover} alt={`${car.brand} ${car.model}`} />
-          </Link>
-          <CarInfo>
-            <h4>{car.mileage > 0 ? 'Usado' : 'Nuevo'}</h4>
-            <NameModelContainer>
-              <CarName>{`${car.brand} ${car.model}`}</CarName>
-              <PriceTag>{`${car.price} ${car.divisa}s`} <br /> / mes</PriceTag>
-            </NameModelContainer>
-            <p>{car.engineCapacity} {car.trimLevel}</p>
-            <CarDetails>
-              <CarAttributes>
-                <CarAttribute>{car.transmition}</CarAttribute>
-                <CarAttribute>{car.fuel}</CarAttribute>
-                <CarAttribute>{car.bodyType}</CarAttribute>
-              </CarAttributes>
-            </CarDetails>
-          </CarInfo>
-        </CarCard>
-      ))}
-    </CarListContainer>
+    <DataFetcher<Car[]> data={cars} loading={loading} error={error}>
+      {(cars) => (
+        <div className={styles.carListContainer}>
+          {cars.map((car) => (
+            <div key={car.id} className={styles.carCard}>
+              {car.isOnsale && <span className={styles.offerBadge}>¡Oferta!</span>}
+              <Link href={`/vehicles/${car.id}`}>
+                <img
+                  className={styles.carImage}
+                  src={car.cover}
+                  alt={`${car.brand} ${car.model}`}
+                />
+              </Link>
+              <div className={styles.carInfo}>
+                <h4>{car.mileage > 0 ? 'Usado' : 'Nuevo'}</h4>
+                <div className={styles.nameModelContainer}>
+                  <h3 className={styles.carName}>{`${car.brand} ${car.model}`}</h3>
+                  <h4 className={styles.priceTag}>{`${car.price} ${car.divisa}s / mes`}</h4>
+                </div>
+                <p>{car.engineCapacity} {car.trimLevel}</p>
+                <div className={styles.carDetails}>
+                  <div className={styles.carAttributes}>
+                    <span className={styles.carAttribute}>{car.transmition}</span>
+                    <span className={styles.carAttribute}>{car.fuel}</span>
+                    <span className={styles.carAttribute}>{car.bodyType}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </DataFetcher>
   );
 };
 
 export default CarList;
-

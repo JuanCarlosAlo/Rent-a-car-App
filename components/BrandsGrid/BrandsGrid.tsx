@@ -1,6 +1,6 @@
-'use client'
+"use client"
 import React from 'react';
-import { GridContainer, BrandCard, BrandLogo, Title } from './styles';
+import styles from './BrandsGrid.module.scss';
 import { brandsData, brandsTitle } from '../../lib/sections/brandsData';
 
 const BrandsGrid = () => {
@@ -10,14 +10,18 @@ const BrandsGrid = () => {
 
   return (
     <section id='brands'>
-    <Title>{brandsTitle}</Title>
-    <GridContainer>
-      {brandsData.map((brand, index) => (
-        <BrandCard key={index} onClick={() => handleBrandClick(brand.name)}>
-          <BrandLogo src={brand.logo} alt={brand.name} />
-        </BrandCard>
-      ))}
-    </GridContainer>
+      <h2 className={styles.title}>{brandsTitle}</h2>
+      <div className={styles.gridContainer}>
+        {brandsData.map((brand, index) => (
+          <div
+            key={index}
+            className={styles.brandCard}
+            onClick={() => handleBrandClick(brand.name)}
+          >
+            <img className={styles.brandLogo} src={brand.logo} alt={brand.name} />
+          </div>
+        ))}
+      </div>
     </section>
   );
 };

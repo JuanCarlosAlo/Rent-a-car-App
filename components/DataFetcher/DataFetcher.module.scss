@@ -1,0 +1,16 @@
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.errorContainer {
+  color: red;
+  text-align: center;
+}
+
+.noDataContainer {
+  text-align: center;
+}

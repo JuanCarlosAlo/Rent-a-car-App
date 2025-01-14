@@ -17,13 +17,16 @@
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
-    "styled-components": "^6.1.13",
+    "react-spinners": "^0.15.0",
+    "sass": "^1.83.4",
+    "styled-components": "^6.1.14",
     "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@types/node": "^20.17.11",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/styled-components": "^5.1.34",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "prisma": "^6.1.0",
