@@ -1,22 +1,13 @@
-'use client'
+'use client';
 
 import { useFetch } from '@/hooks/useFetch';
-import {
-  CarDetailContainer,
-  CarDetails,
-  DetailSection,
-  DetailTitle,
-  PriceSection,
-  TransactionButton,
-} from './styles';
+import styles from './CarDetailsPage.module.scss';
 import MainContent from '@/components/MainContent/MainContent';
 import { Slider } from '@/components/ImageSlider/ImageSlider';
 import MainButton from '@/components/MainButton/MainButton';
-import { MAIN_COLORS } from '@/lib/COLORS';
 import { Car } from '@/types/car';
 
 const CarDetailsPage = ({ params: { id } }: { params: { id: string } }) => {
-
   const { data: car, loading, error } = useFetch<Car>(`/api/cars/${id}`);
 
   if (loading) return <div>Loading...</div>;
@@ -25,42 +16,55 @@ const CarDetailsPage = ({ params: { id } }: { params: { id: string } }) => {
 
   return (
     <MainContent>
-      <CarDetailContainer>
+      <div className={styles.carDetailContainer}>
+        <div className={styles.carDetails}>
+          <div className={styles.detailSection}>
+            <h1 className={styles.detailTitle}>
+              {`${car.brand} ${car.model} ${car.year}`}
+            </h1>
+            <div className={styles.priceSection}>
+              <h2>{`${car.price} ${car.divisa} / mes`}</h2>
+            </div>
+          </div>
 
-        <CarDetails>
-          <DetailSection>
-            <DetailTitle>{`${car.brand} ${car.model} ${car.year}`}</DetailTitle>
-            <PriceSection>
-              <h2>{`${car.price} ${car.divisa}s / mes`}</h2>
-            </PriceSection>
-          </DetailSection>
-
-          <DetailSection>
+          <div className={styles.detailSection}>
             <p>{car.description}</p>
             <ul>
-              <li><strong>Combustible:</strong> {car.fuel}</li>
-              <li><strong>Transmisión:</strong> {car.transmition}</li>
-              <li><strong>Tipo:</strong> {car.bodyType}</li>
-              <li><strong>Capacidad del motor:</strong> {car.engineCapacity}</li>
-              <li><strong>Color:</strong> {car.color}</li>
-              <li><strong>Condición:</strong> {car.condition}</li>
-              <li><strong>Disponibilidad:</strong> {new Date(car.availabilityDate).toLocaleDateString()}</li>
+              <li>
+                <strong>Combustible:</strong> {car.fuel}
+              </li>
+              <li>
+                <strong>Transmisión:</strong> {car.transmition}
+              </li>
+              <li>
+                <strong>Tipo:</strong> {car.bodyType}
+              </li>
+              <li>
+                <strong>Capacidad del motor:</strong> {car.engineCapacity}
+              </li>
+              <li>
+                <strong>Color:</strong> {car.color}
+              </li>
+              <li>
+                <strong>Condición:</strong> {car.condition}
+              </li>
+              <li>
+                <strong>Disponibilidad:</strong>{' '}
+                {new Date(car.availabilityDate).toLocaleDateString()}
+              </li>
             </ul>
-          </DetailSection>
+          </div>
 
           <MainButton
             onClick={() => console.log('Alquilar el coche')}
-            color={MAIN_COLORS.PRIMARY}
-            bgColor={MAIN_COLORS.SECONDARY}
+            color="secondary"
           >
             Alquilar por {car.price} {car.divisa} / mes
           </MainButton>
-        </CarDetails>
+        </div>
 
-        {/* Mostrar las imágenes del coche */}
         <Slider images={car.images.map((image) => image.url)} />
-
-      </CarDetailContainer>
+      </div>
     </MainContent>
   );
 };

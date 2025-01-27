@@ -1,0 +1,36 @@
+@use '@/lib/COLORS' as *;
+
+.footerContainer {
+    background-color: $secondary;
+    color: $primary;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+.footerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+}
+
+.socialLinks {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.linkItem {
+    color: $primary;
+    text-decoration: none;
+    transition: color 0.3s;
+
+    &:hover {
+        color: $terciary;
+    }
+}

@@ -26,8 +26,8 @@ const Banner = () => {
                 <p>{`${car.brand} ${car.model} ${car.engineCapacity} ${car.trimLevel}`}</p>
                 <MainButton
                   url={`/vehicles/${car.id}`}
-                  color={MAIN_COLORS.SECONDARY}
-                  bgColor={MAIN_COLORS.PRIMARY}
+                  color="secondary"
+
                 >
                   Ver Detalles
                 </MainButton>

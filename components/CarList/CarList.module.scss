@@ -1,3 +1,4 @@
+@use '@/lib/COLORS' as *;
 .carListContainer {
   display: flex;
   flex-wrap: wrap;
@@ -12,8 +13,8 @@
 }
 
 .carCard {
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: $cards-bg;
+  box-shadow: $cards-shadow;
   overflow: hidden;
   max-width: 550px;
   text-align: left;
@@ -38,6 +39,7 @@
 
 .carName {
   font-size: 2rem;
+  color: $secondary;
 
   @media (max-width: 768px) {
     font-size: 1.2rem;
@@ -65,7 +67,7 @@
 }
 
 .priceTag {
-  color: #ff5722;
+  color: $forth;
   margin: 0;
   font-size: 1.5rem;
 
@@ -76,7 +78,7 @@
 
 .carDetails {
   font-size: 0.9rem;
-  color: #555;
+  color: $secondary;
   text-align: left;
 
   @media (max-width: 768px) {
@@ -96,11 +98,11 @@
 }
 
 .carAttribute {
-  background: #f0f0f0;
+  background: $hover;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 0.8rem;
-  color: #333;
+  color: $primary;
 
   @media (max-width: 768px) {
     margin-bottom: 5px;
@@ -111,8 +113,8 @@
   position: absolute;
   top: 10px;
   left: 10px;
-  background: red;
-  color: white;
+  background: $terciary;
+  color: $primary;
   padding: 5px 10px;
   border-radius: 5px;
   font-weight: bold;

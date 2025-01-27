@@ -1,33 +1,34 @@
-import React from 'react'
-import { Card, CardDescription, CardList, CardTitle, CompanyDescription, ContentWrapper, SectionContainer, Title } from './styles'
-import {infoData, infoDesc, infoTitle} from '../../lib/sections/infoData'
-import { MAIN_COLORS } from '@/lib/COLORS'
-import MainButton from '../MainButton/MainButton'
+'use client';
 
-
+import React from 'react';
+import styles from './Info.module.scss';
+import { infoData, infoDesc, infoTitle } from '../../lib/sections/infoData';
+import MainButton from '../MainButton/MainButton';
 
 const Info = () => {
   return (
-    <SectionContainer id='info'>
-        <ContentWrapper>
-            <Title>{infoTitle}</Title>
-            <CompanyDescription>
-                {infoDesc}
-            </CompanyDescription>
-            <MainButton url={`/vehicles/`} color={MAIN_COLORS.PRIMARY} bgColor={MAIN_COLORS.SECONDARY}>
-        Descubre nuestros coches
-      </MainButton>
-            </ContentWrapper>
-            <CardList>
-                {infoData.map((item, index) => (
-                    <Card key={index}>
-                        <CardTitle>{item.title}</CardTitle>
-                        <CardDescription>{item.description}</CardDescription>
-                    </Card>
-                ))}
-            </CardList>
-        </SectionContainer>
-  )
-}
+    <section id="info" className={styles.sectionContainer}>
+      <div className={styles.contentWrapper}>
+        <h2 className={styles.title}>{infoTitle}</h2>
+        <p className={styles.companyDescription}>{infoDesc}</p>
+        <MainButton
+          url={`/vehicles/`}
+          color="primary"
 
-export default Info
+        >
+          Descubre nuestros coches
+        </MainButton>
+      </div>
+      <div className={styles.cardList}>
+        {infoData.map((item, index) => (
+          <div key={index} className={styles.card}>
+            <h3 className={styles.cardTitle}>{item.title}</h3>
+            <p className={styles.cardDescription}>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Info;

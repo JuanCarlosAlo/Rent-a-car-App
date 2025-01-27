@@ -1,24 +1,31 @@
 import React from 'react';
-import { HeroContainer, HeroContent, HeroDescripcion, HeroTitle } from './styles';
+import styles from './Hero.module.scss';
 import Button from '../MainButton/MainButton';
-import { MAIN_COLORS } from '@/lib/COLORS';
 
 const Hero = () => {
   return (
-    <HeroContainer>
-      <HeroContent>
-      <HeroTitle>No compres coche. <br />
-        Hazte un REVEL.</HeroTitle>
-      <HeroDescripcion>Suscríbete a un coche con todo incluido.<br />
-        Di adiós a las largas permanencias.<br />
-        Entrega a domicilio.<br />
-        Prueba 15 días sin compromiso.<br />
-        Conducción neutra de CO₂.</HeroDescripcion>
-      <Button url={`/vehicles/`} color={MAIN_COLORS.SECONDARY} bgColor={MAIN_COLORS.PRIMARY}>
-        Descubre nuestros coches
-      </Button>
-      </HeroContent>
-    </HeroContainer>
+    <section className={styles.heroContainer}>
+      <div className={styles.heroContent}>
+        <h1 className={styles.heroTitle}>
+          No compres coche. <br />
+          Hazte un REVEL.
+        </h1>
+        <p className={styles.heroDescripcion}>
+          Suscríbete a un coche con todo incluido.<br />
+          Di adiós a las largas permanencias.<br />
+          Entrega a domicilio.<br />
+          Prueba 15 días sin compromiso.<br />
+          Conducción neutra de CO₂.
+        </p>
+        <Button
+          url={`/vehicles/`}
+          color="primary"
+
+        >
+          Descubre nuestros coches
+        </Button>
+      </div>
+    </section>
   );
 };
 

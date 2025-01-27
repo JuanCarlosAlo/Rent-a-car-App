@@ -61,8 +61,8 @@ const CarSlider = () => {
                   </div>
                   <MainButton
                     url={`/vehicles/${car.id}`}
-                    color={MAIN_COLORS.PRIMARY}
-                    bgColor={MAIN_COLORS.SECONDARY}
+                    color="secondary"
+
                   >
                     Más información
                   </MainButton>

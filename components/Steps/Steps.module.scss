@@ -1,11 +1,6 @@
-'use client';
-import styled from 'styled-components';
-import { MAIN_COLORS } from '@/lib/COLORS';
+@use '@/lib/COLORS' as *;
 
-
-
-
-export const StepContainer = styled.section`
+.stepContainer {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -13,16 +8,16 @@ export const StepContainer = styled.section`
   max-width: 90rem;
   margin: 0 auto;
   width: 100%;
-`;
+}
 
-export const Title = styled.h2`
+.title {
   font-size: 2.5rem;
-  color: #333;
+  color: $secondary;
   margin-bottom: 2rem;
   text-align: center;
-`;
+}
 
-export const StepCardsWrapper = styled.div`
+.stepCardsWrapper {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -32,16 +27,16 @@ export const StepCardsWrapper = styled.div`
     flex-direction: column;
     gap: 3rem;
   }
-`;
+}
 
-export const StepCard = styled.div`
+.stepCard {
   display: flex;
   flex-direction: column;
-  border: 1px solid ${MAIN_COLORS.CARDS_BORDER};
-
+  border: 1px solid $cards-border;
   overflow: hidden;
-  background: white;
+  background: $cards-bg;
   position: relative;
+  box-shadow: $cards-shadow;
 
   @media (min-width: 768px) {
     flex-direction: row;
@@ -51,9 +46,9 @@ export const StepCard = styled.div`
       flex-direction: row-reverse;
     }
   }
-`;
+}
 
-export const StepContent = styled.div`
+.stepContent {
   flex: 40%;
   display: flex;
   flex-direction: column;
@@ -63,43 +58,43 @@ export const StepContent = styled.div`
   @media (min-width: 768px) {
     padding: 3rem;
   }
-`;
+}
 
-export const StepImage = styled.img`
+.stepImage {
   flex: 70%;
   width: 100%;
   height: auto;
   object-fit: cover;
 
-
   @media (min-width: 768px) {
     height: 500px;
     border-radius: 0;
   }
-`;
+}
 
-export const StepTitle = styled.h3`
+.stepTitle {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
-  color: ${MAIN_COLORS.SECONDARY};
-`;
+  color: $secondary;
+}
 
-export const StepDescription = styled.p`
+.stepDescription {
   font-size: 1rem;
   margin-bottom: 1rem;
-  color: ${MAIN_COLORS.SECONDARY};
-`;
+  color: $secondary;
+}
 
-export const MainButton = styled.button`
-  background: ${MAIN_COLORS.TERCIARY};
-  color: white;
+.mainButton {
+  background: $terciary;
+  color: $primary;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: 1rem;
+  transition: background 0.3s ease;
 
   &:hover {
-    background: ${MAIN_COLORS.HOVER};
+    background: $hover;
   }
-`;
+}

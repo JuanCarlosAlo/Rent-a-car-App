@@ -1,23 +1,52 @@
 'use client';
 
 import React from 'react';
-import { FooterContainer, FooterContent, SocialLinks, LinkItem } from './styles';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
     return (
-        <FooterContainer>
-            <FooterContent>
+        <footer className={styles.footerContainer}>
+            <div className={styles.footerContent}>
                 <p>&copy; {new Date().getFullYear()} Rent A Car. Todos los derechos reservados.</p>
                 <p>
-                    Desarrollado por <LinkItem href="https://github.com/JuanCarlosAlo" target="_blank" rel="noopener noreferrer">J.C.A.M</LinkItem>
+                    Desarrollado por{' '}
+                    <a 
+                        href="https://github.com/JuanCarlosAlo" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={styles.linkItem}
+                    >
+                        J.C.A.M
+                    </a>
                 </p>
-                <SocialLinks>
-                    <LinkItem href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</LinkItem>
-                    <LinkItem href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</LinkItem>
-                    <LinkItem href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</LinkItem>
-                </SocialLinks>
-            </FooterContent>
-        </FooterContainer>
+                <div className={styles.socialLinks}>
+                    <a 
+                        href="https://facebook.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={styles.linkItem}
+                    >
+                        Facebook
+                    </a>
+                    <a 
+                        href="https://twitter.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={styles.linkItem}
+                    >
+                        Twitter
+                    </a>
+                    <a 
+                        href="https://instagram.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className={styles.linkItem}
+                    >
+                        Instagram
+                    </a>
+                </div>
+            </div>
+        </footer>
     );
 };
 
