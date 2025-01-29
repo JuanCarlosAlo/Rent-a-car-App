@@ -1,13 +1,12 @@
+import { fetchCarsOnSale } from "@/hooks/carsOnSale";
+import { Car } from "@/types/car";
+import CarSlider from "./CarSlider";
 
-// import { fetchCarsOnSale } from "@/hooks/carsOnSale";
-// import CarSlider from "./CarSlider";
-// import { Car } from "@/types/car";
-
-// const CarSliderWrapper = async () => {
-//   const carsOnSale: Car[] = await fetchCarsOnSale<Car[]>(); 
+const CarSliderWrapper = async () => {
+   const carsOnSale: Car[] = await fetchCarsOnSale(); 
   
     
-//   return <CarSlider carsOnSale={carsOnSale} />;
-// };
+  return <CarSlider carsOnSale={carsOnSale} />;
+ };
 
-// export default CarSliderWrapper;
+ export default CarSliderWrapper;

@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useCallback } from 'react';
 import styles from './MainButton.module.scss';
 import { useRouter } from 'next/navigation';
 
@@ -17,14 +17,19 @@ const MainButton = ({
 }) => {
   const router = useRouter();
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (url) {
-      router.push(url); 
+      router.push(url);
     } else if (onClick) {
-      onClick(); 
+      onClick();
+    }
+  }, [url, onClick, router]);
+
+  const handleMouseEnter = () => {
+    if (url) {
+      router.prefetch(url);
     }
   };
-
   return (
     
     <button className={`${styles.button} ${color ? styles[color]: styles.primary}`} onClick={handleClick} >

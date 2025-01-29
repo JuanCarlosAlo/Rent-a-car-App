@@ -1,11 +1,15 @@
-export const fetchCarsOnSale = async <T>(): Promise<T> => {
-    const response = await fetch(`/api/cars/onSale`, {
-      cache: "no-store", // No cache para datos dinámicos (ajústalo según necesidad)
-    });
-  
-    if (!response.ok) {
-      throw new Error("Error al obtener los coches en oferta");
-    }
-  
-    return response.json();
-  };
+import { Car } from "@/types/car";
+
+export const fetchCarsOnSale = async (): Promise<Car[]> => {
+  const res = await fetch(`http://localhost:3000/api/cars/onSale`, {
+    next: {
+      revalidate: 60, 
+    },
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al obtener los coches en oferta");
+  }
+
+  return res.json();
+};

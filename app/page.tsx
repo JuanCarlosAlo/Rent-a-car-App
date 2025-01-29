@@ -1,20 +1,20 @@
-import BrandsGrid from "@/components/BrandsGrid/BrandsGrid";
-import CarSlider from "@/components/CarSlider/CarSlider";
 import Hero from "@/components/Hero/Hero";
 import Info from "@/components/Info/Info";
 import Steps from "@/components/Steps/Steps";
+import BrandsGrid from "@/components/BrandsGrid/BrandsGrid";
+import CarSliderWrapper from "@/components/CarSlider/CarSliderWrapper";
 
 
-export default function Home() {
+export default async function Home() {
+ 
+  
   return (
     <>
-    
-   <Hero/>
-   <CarSlider/>
-   <Info/>
-   <Steps/>
-   <BrandsGrid/>
-   
-   </>
+      <Hero />
+      <CarSliderWrapper />
+      <Info />
+      <Steps />
+      <BrandsGrid />
+    </>
   );
 }
