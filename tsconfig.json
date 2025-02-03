@@ -21,6 +21,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/cars/route.ts", "app/api/cars/route.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/api/cars/route.ts", "app/api/cars/route.ts", "prisma/prisma"],
   "exclude": ["node_modules"]
 }
