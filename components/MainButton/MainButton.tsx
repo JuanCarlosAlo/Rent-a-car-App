@@ -2,6 +2,8 @@
 import React, { useCallback } from 'react';
 import styles from './MainButton.module.scss';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { link } from 'fs';
 
 
 const MainButton = ({
@@ -12,7 +14,7 @@ const MainButton = ({
 }: {
   children: React.ReactNode;
   color?: 'primary' | 'secondary' | 'terciary' | 'forth';
-  url?:string;
+  url:string;
   onClick?: () => void;
 }) => {
   const router = useRouter();
@@ -32,9 +34,9 @@ const MainButton = ({
   };
   return (
     
-    <button className={`${styles.button} ${color ? styles[color]: styles.primary}`} onClick={handleClick} >
+    <Link className={`${styles.button} ${color ? styles[color]: styles.primary}`} onClick={handleClick} href={url} prefetch>
       {children}
-    </button>
+    </Link>
   );
 };
 

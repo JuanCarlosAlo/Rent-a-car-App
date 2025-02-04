@@ -1,0 +1,74 @@
+@use '@/lib/COLORS' as *;
+
+.container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: $cards-bg;
+  border-radius: 8px;
+  box-shadow: $cards-shadow;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: $secondary;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: $secondary;
+  }
+
+  input {
+    padding: 0.8rem;
+    border: 1px solid $cards-border;
+    border-radius: 4px;
+    font-size: 1rem;
+    background: $primary;
+    color: $secondary;
+  }
+
+  .inputError {
+    border-color: $forth;
+  }
+}
+
+.error {
+  color: $forth;
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+.button {
+  background: $terciary;
+  color: $secondary;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: $hover;
+  }
+
+  &:disabled {
+    background: $cards-border;
+    cursor: not-allowed;
+  }
+}

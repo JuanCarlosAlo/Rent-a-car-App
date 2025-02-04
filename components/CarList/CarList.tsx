@@ -3,25 +3,24 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './CarList.module.scss';
-import { useFetch } from '../../hooks/useFetch';
 import { Car } from '@/types/car';
-import DataFetcher from '../DataFetcher/DataFetcher'; 
 
-const CarList = () => {
-  const { data: cars, loading, error } = useFetch<Car[]>('/api/cars');
+
+const CarList = ({cars}: {cars: Car[]}) => {
+
 
   return (
-    <DataFetcher<Car[]> data={cars} loading={loading} error={error}>
-      {(cars) => (
+
         <div className={styles.carListContainer}>
           {cars.map((car) => (
             <div key={car.id} className={styles.carCard}>
               {car.isOnsale && <span className={styles.offerBadge}>¡Oferta!</span>}
-              <Link href={`/vehicles/${car.id}`}>
+              <Link href={`/vehicles/${car.id}`} prefetch>
                 <img
                   className={styles.carImage}
                   src={car.cover}
                   alt={`${car.brand} ${car.model}`}
+                  
                 />
               </Link>
               <div className={styles.carInfo}>
@@ -42,8 +41,7 @@ const CarList = () => {
             </div>
           ))}
         </div>
-      )}
-    </DataFetcher>
+
   );
 };
 

@@ -59,6 +59,7 @@ const Header = () => {
               <Link
                 href={item.href}
                 onClick={() => handleNavigation(item.href)}
+                prefetch
               >
                 {item.title}
               </Link>
