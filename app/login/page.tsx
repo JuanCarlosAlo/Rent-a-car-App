@@ -1,77 +1,83 @@
 "use client"
 
-import { useForm } from "react-hook-form";
+import MainContent from '@/components/MainContent/MainContent'
+import React from 'react'
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { signIn } from "next-auth/react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./Login.module.scss";
 
-
-type FormData = {
+type LoginFormInputs = {
   email: string;
   password: string;
 };
+
 
 const Login = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<FormData>();
-
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    formState: { errors },
+  } = useForm<LoginFormInputs>();
   const router = useRouter();
 
-  const onSubmit = async (data: FormData) => {
-    setErrorMessage(null);
-
-    const res = await signIn("credentials", {
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    const result = await signIn("credentials", {
       redirect: false,
       email: data.email,
       password: data.password,
     });
-
-    if (res?.error) {
-      setErrorMessage("Credenciales incorrectas");
-      return;
+    if (result?.error) {
+      console.error("Error de autenticación:", result.error);
+    } else {
+      // Redirigir o manejar el login exitoso
+      router.push("/dashboard");
     }
-
-    router.push("/dashboard"); 
   };
-
   return (
-    <div className={styles.container}>
-    <h2>Iniciar sesión</h2>
-
-    {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <div className={styles.formGroup}>
-        <label>Email</label>
-        <input
-          {...register("email", { required: "El email es obligatorio" })}
-          type="email"
-          className={errors.email ? styles.inputError : ""}
-        />
-        {errors.email && <p className={styles.error}>{errors.email.message}</p>}
-      </div>
-
-      <div className={styles.formGroup}>
-        <label>Contraseña</label>
-        <input
-          {...register("password", { required: "La contraseña es obligatoria" })}
-          type="password"
-          className={errors.password ? styles.inputError : ""}
-        />
-        {errors.password && <p className={styles.error}>{errors.password.message}</p>}
-      </div>
-
-      <button type="submit" className={styles.button} disabled={isSubmitting}>
-        {isSubmitting ? "Cargando..." : "Ingresar"}
-      </button>
-    </form>
-  </div>
-
+    <MainContent>
+    <div style={{ maxWidth: '400px', margin: '0 auto' }}>
+      <h1>Iniciar Sesión</h1>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <div style={{ marginBottom: '1rem' }}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            {...register('email', {
+              required: 'El email es obligatorio',
+              pattern: {
+                value: /\S+@\S+\.\S+/,
+                message: 'Formato de email inválido',
+              },
+            })}
+          />
+          {errors.email && (
+            <p style={{ color: 'red', margin: '0.5rem 0' }}>{errors.email.message}</p>
+          )}
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <label htmlFor="password">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            {...register('password', {
+              required: 'La contraseña es obligatoria',
+              minLength: {
+                value: 6,
+                message: 'La contraseña debe tener al menos 6 caracteres',
+              },
+            })}
+          />
+          {errors.password && (
+            <p style={{ color: 'red', margin: '0.5rem 0' }}>{errors.password.message}</p>
+          )}
+        </div>
+        <button type="submit" style={{ padding: '0.75rem 1.5rem' }}>
+          Iniciar sesión
+        </button>
+      </form>
+    </div>
+  </MainContent>
   )
 }
 

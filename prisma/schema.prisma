@@ -13,47 +13,101 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Car {
-  id              String   @id @default(uuid())
-  name            String
-  year            Int
-  description     String
-  brand           String
-  model           String
-  cover           String
-  transmition     String
-  fuel            String
-  isRented        Boolean
-  isOnsale        Boolean
-  price           Float
-  divisa          String
-  bodyType        String
-  mileage         Int
-  color           String
-  trimLevel       String
-  engineCapacity  Float
-  doors           Int
-  passengerCapacity Int
-  fuelConsumption String
-  location        String
-  condition       String
-  availabilityDate DateTime
-  features        CarFeatures[]
-  rating          Float
+model User {
+  id            String    @id @default(uuid())
+  name          String
+  email         String    @unique
+  password      String
+  image         String?
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
-  images          CarImage[]
+  accounts   Account[]
+  sessions   Session[]
+  rentals    Rental[]
+  rentedCars Car[]     @relation("CarRenter")
+}
+
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  expires      DateTime
+  sessionToken String   @unique
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Car {
+  id                String        @id @default(uuid())
+  name              String
+  year              Int
+  description       String
+  brand             String
+  model             String
+  cover             String
+  transmition       String
+  fuel              String
+  isRented          Boolean       @default(false)
+  isOnsale          Boolean
+  price             Float
+  divisa            String
+  bodyType          String
+  mileage           Int
+  color             String
+  trimLevel         String
+  engineCapacity    Float
+  doors             Int
+  passengerCapacity Int
+  fuelConsumption   String
+  location          String
+  condition         String
+  availabilityDate  DateTime
+  features          CarFeatures[]
+  rating            Float
+  images            CarImage[]
+
+  renterId String?
+  renter   User?   @relation("CarRenter", fields: [renterId], references: [id], onDelete: SetNull)
+
+  rentals Rental[]
 }
 
 model CarImage {
-  id      String   @id @default(uuid())
-  carId   String
-  url     String
-  car     Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
+  id    String @id @default(uuid())
+  carId String
+  url   String
+  car   Car    @relation(fields: [carId], references: [id], onDelete: Cascade)
 }
 
 model CarFeatures {
+  id      String @id @default(uuid())
+  carId   String
+  feature String
+  car     Car    @relation(fields: [carId], references: [id], onDelete: Cascade)
+}
+
+model Rental {
   id        String   @id @default(uuid())
+  userId    String
   carId     String
-  feature   String
-  car       Car      @relation(fields: [carId], references: [id], onDelete: Cascade)
+  startDate DateTime
+  endDate   DateTime
+  price     Float
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  car  Car  @relation(fields: [carId], references: [id], onDelete: Cascade)
 }
