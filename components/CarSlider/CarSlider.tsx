@@ -17,7 +17,7 @@ interface CarSliderProps {
   carsOnSale: Car[];
 }
 
-const CarSlider: React.FC<CarSliderProps> = ({ carsOnSale }) => {
+const CarSlider = ({ carsOnSale }:CarSliderProps) => {
   if (!carsOnSale || carsOnSale.length === 0) {
     return <p>No hay coches en oferta actualmente.</p>;
   }

@@ -1,10 +1,6 @@
-
-
-import { useFetch } from '@/hooks/useFetch';
 import styles from './CarDetailsPage.module.scss';
 import MainContent from '@/components/MainContent/MainContent';
 import { Slider } from '@/components/ImageSlider/ImageSlider';
-import MainButton from '@/components/MainButton/MainButton';
 import { fetchCarById } from '@/hooks/carsOnSale';
 import CarInfoDetails from '@/components/CarInfoDetails/CarInfoDetails';
 

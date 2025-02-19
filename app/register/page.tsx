@@ -3,46 +3,54 @@
 import MainContent from "@/components/MainContent/MainContent";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-
-import styles from "./Login.module.scss";
+import styles from "./Register.module.scss";
 import MainButton from "@/components/MainButton/MainButton";
 
-type LoginFormInputs = {
+type RegisterFormInputs = {
   email: string;
   password: string;
+  confirmPassword: string;
 };
 
-const Login = () => {
+const Register = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFormInputs>({
-    mode: "onBlur", 
+  } = useForm<RegisterFormInputs>({
+    mode: "onBlur",
   });
 
   const router = useRouter();
+  const password = watch("password");
 
-  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
-    const result = await signIn("credentials", {
-      redirect: false,
-      email: data.email,
-      password: data.password,
-    });
+  const onSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      });
 
-    if (result?.error) {
-      console.error("Error de autenticación:", result.error);
-    } else {
-      router.push("/dashboard");
+      if (!response.ok) {
+        throw new Error("Error al registrar el usuario");
+      }
+
+      router.push("/dashboard"); 
+    } catch (error) {
+      console.error("Error en el registro:", error);
     }
   };
 
   return (
     <MainContent>
       <div className={styles.container}>
-        <h2>Iniciar Sesión</h2>
+        <h2>Registrarse</h2>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form} noValidate>
           {/* Campo Email */}
           <div className={styles.formGroup}>
@@ -80,12 +88,29 @@ const Login = () => {
             {errors.password && <p className={styles.error}>{errors.password.message}</p>}
           </div>
 
-  
-          <MainButton type="submit" color="secondary">Enviar</MainButton>
+          {/* Campo Confirmar Contraseña */}
+          <div className={styles.formGroup}>
+            <label htmlFor="confirmPassword">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              className={errors.confirmPassword ? styles.inputError : ""}
+              {...register("confirmPassword", {
+                required: "Confirma tu contraseña",
+                validate: (value) => value === password || "Las contraseñas no coinciden",
+              })}
+            />
+            {errors.confirmPassword && <p className={styles.error}>{errors.confirmPassword.message}</p>}
+          </div>
+
+          {/* Botón de envío */}
+          <MainButton type="submit" color="secondary">
+            Registrarse
+          </MainButton>
         </form>
       </div>
     </MainContent>
   );
 };
 
-export default Login;
+export default Register;

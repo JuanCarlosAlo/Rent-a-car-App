@@ -1,21 +1,23 @@
-"use client"
-import React, { useCallback } from 'react';
-import styles from './MainButton.module.scss';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { link } from 'fs';
+"use client";
+import React, { useCallback } from "react";
+import styles from "./MainButton.module.scss";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
-
-const MainButton = ({
-  children,
-  color,
-  url,
-  onClick,
-}: {
+interface MainButtonProps {
   children: React.ReactNode;
-  color?: 'primary' | 'secondary' | 'terciary' | 'forth';
-  url:string;
+  color?: "primary" | "secondary" | "terciary" | "forth";
+  url?: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset"; 
+}
+
+const MainButton: React.FC<MainButtonProps> = ({ 
+  children, 
+  color = "primary", 
+  url, 
+  onClick, 
+  type = "button"
 }) => {
   const router = useRouter();
 
@@ -32,11 +34,28 @@ const MainButton = ({
       router.prefetch(url);
     }
   };
+
+  if (url) {
+    return (
+      <Link 
+        className={`${styles.button} ${styles[color]}`} 
+        href={url} 
+        prefetch
+        onClick={handleClick} 
+      >
+        {children}
+      </Link>
+    );
+  }
+
   return (
-    
-    <Link className={`${styles.button} ${color ? styles[color]: styles.primary}`} onClick={handleClick} href={url} prefetch>
+    <button 
+      className={`${styles.button} ${styles[color]}`} 
+      onClick={onClick} 
+      type={type} 
+    >
       {children}
-    </Link>
+    </button>
   );
 };
 
