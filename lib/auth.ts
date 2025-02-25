@@ -1,13 +1,15 @@
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 
-// Función para hashear contraseñas sin bcrypt
+// Hashear contraseñas con bcrypt
 async function hashPassword(password: string) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  return Array.from(new Uint8Array(hashBuffer))
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
+  const salt = await bcrypt.genSalt(10);
+  return await bcrypt.hash(password, salt);
+}
+
+// Verificar contraseña
+async function verifyPassword(password: string, hashedPassword: string) {
+  return await bcrypt.compare(password, hashedPassword);
 }
 
 // Registrar usuario
@@ -29,9 +31,8 @@ export async function loginUser(email: string, password: string) {
 
   if (!user) throw new Error("Usuario no encontrado");
 
-  const hashedInputPassword = await hashPassword(password);
-
-  if (hashedInputPassword !== user.password) throw new Error("Contraseña incorrecta");
+  const isPasswordValid = await verifyPassword(password, user.password);
+  if (!isPasswordValid) throw new Error("Contraseña incorrecta");
 
   return user;
 }

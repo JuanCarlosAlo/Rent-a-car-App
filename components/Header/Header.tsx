@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Importar hook para obtener la ruta actual
+import { usePathname } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 import styles from "./Header.module.scss";
 import { NAV_ITEMS } from "../../lib/sections/navItems";
@@ -11,13 +12,15 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname(); 
+  const { data: session, status } = useSession();
+
+  console.log("Sesión:", session);
+  console.log("Estado:", status);
 
   useEffect(() => {
-
     const isHome = pathname === "/";
 
     const handleScroll = () => {
-
       setIsScrolled(isHome ? window.scrollY > 0 : true);
     };
 
@@ -65,6 +68,7 @@ const Header = () => {
               </Link>
             </li>
           ))}
+         
         </ul>
       </nav>
     </header>

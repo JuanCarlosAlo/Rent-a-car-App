@@ -1,18 +1,11 @@
-import NextAuth from "next-auth";
+import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 
-// Función para hashear contraseñas con SHA-256
-async function hashPassword(password: string) {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", data);
-  return Array.from(new Uint8Array(hashBuffer))
-    .map((byte) => byte.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma), 
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -25,7 +18,6 @@ export default NextAuth({
           throw new Error("Faltan credenciales");
         }
 
-        // Buscar usuario en la base de datos
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
         });
@@ -34,9 +26,8 @@ export default NextAuth({
           throw new Error("Usuario no encontrado");
         }
 
-        // Comparar contraseñas
-        const hashedInputPassword = await hashPassword(credentials.password);
-        if (hashedInputPassword !== user.password) {
+        const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+        if (!isPasswordValid) {
           throw new Error("Contraseña incorrecta");
         }
 
@@ -45,9 +36,15 @@ export default NextAuth({
     }),
   ],
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
     async session({ session, token }) {
-      if (session?.user) {
-        session.user.id = token.sub ?? ""; // Asegurar que id esté presente
+      if (session.user && token.id) {
+        session.user.id = token.id;
       }
       return session;
     },
@@ -57,6 +54,6 @@ export default NextAuth({
   },
   secret: process.env.NEXTAUTH_SECRET,
   session: {
-    strategy: "jwt",
+    strategy: "jwt", 
   },
-});
+};

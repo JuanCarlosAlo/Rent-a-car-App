@@ -6,11 +6,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import styles from "./Register.module.scss";
 import MainButton from "@/components/MainButton/MainButton";
+import { signIn } from "next-auth/react";
 
 type RegisterFormInputs = {
   email: string;
   password: string;
   confirmPassword: string;
+  name:string;
 };
 
 const Register = () => {
@@ -34,14 +36,26 @@ const Register = () => {
         body: JSON.stringify({
           email: data.email,
           password: data.password,
+          name: data.name
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error("Error al registrar el usuario");
       }
-
-      router.push("/dashboard"); 
+  
+      // Iniciar sesión automáticamente después del registro
+      const result = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
+      });
+  
+      if (!result?.error) {
+        router.push("/vehicles"); 
+      } else {
+        console.error("Error al iniciar sesión:", result.error);
+      }
     } catch (error) {
       console.error("Error en el registro:", error);
     }
@@ -64,6 +78,23 @@ const Register = () => {
                 pattern: {
                   value: /\S+@\S+\.\S+/,
                   message: "Formato de email inválido",
+                },
+              })}
+            />
+            {errors.email && <p className={styles.error}>{errors.email.message}</p>}
+          </div>
+          {/* Campo Name */}
+          <div className={styles.formGroup}>
+            <label htmlFor="name">Name</label>
+            <input
+              type="name"
+              id="name"
+              className={errors.email ? styles.inputError : ""}
+              {...register("name", {
+                required: "El nombre es obligatorio",
+                minLength: {
+                  value: 3,
+                  message: "El nombre debe tener al menos 3 caracteres",
                 },
               })}
             />
