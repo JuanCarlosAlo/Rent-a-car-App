@@ -9,6 +9,7 @@ interface MainButtonProps {
   color?: "primary" | "secondary" | "terciary" | "forth";
   url?: string;
   onClick?: () => void;
+  disabled?: boolean;
   type?: "button" | "submit" | "reset"; 
 }
 
@@ -17,6 +18,7 @@ const MainButton: React.FC<MainButtonProps> = ({
   color = "primary", 
   url, 
   onClick, 
+  disabled,
   type = "button"
 }) => {
   const router = useRouter();
@@ -29,11 +31,6 @@ const MainButton: React.FC<MainButtonProps> = ({
     }
   }, [url, onClick, router]);
 
-  const handleMouseEnter = () => {
-    if (url) {
-      router.prefetch(url);
-    }
-  };
 
   if (url) {
     return (
@@ -53,6 +50,7 @@ const MainButton: React.FC<MainButtonProps> = ({
       className={`${styles.button} ${styles[color]}`} 
       onClick={onClick} 
       type={type} 
+      disabled={!disabled ? false : true}
     >
       {children}
     </button>

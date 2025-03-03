@@ -3,10 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession,  } from "next-auth/react";
 
 import styles from "./Header.module.scss";
-import { NAV_ITEMS } from "../../lib/sections/navItems";
+import { NAV_ITEMS, NOT_USER_NAV_ITEMS, USER_NAV_ITEMS } from "../../lib/sections/navItems";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -68,6 +68,32 @@ const Header = () => {
               </Link>
             </li>
           ))}
+          {status !== 'authenticated' ? (
+            NOT_USER_NAV_ITEMS.map((item) => (
+            <li key={item.title}>
+              <Link
+                href={item.href}
+                onClick={() => handleNavigation(item.href)}
+                prefetch
+              >
+                {item.title}
+              </Link>
+            </li>
+          ))
+
+          ):(
+            USER_NAV_ITEMS.map((item) => (
+              <li key={item.title}>
+                <Link
+                  href={item.href}
+                  onClick={() => handleNavigation(item.href)}
+                  prefetch
+                >
+                  {item.title}
+                </Link>
+              </li>
+            ))
+          )}
          
         </ul>
       </nav>

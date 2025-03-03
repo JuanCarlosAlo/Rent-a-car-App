@@ -135,9 +135,10 @@ const Register = () => {
           </div>
 
           {/* Botón de envío */}
-          <MainButton type="submit" color="secondary">
-            Registrarse
-          </MainButton>
+          <MainButton type="submit" color="secondary" disabled={isSubmitting}>
+  {isSubmitting ? <span className={styles.spinner}></span> : "Registrarse"}
+</MainButton>
+
         </form>
       </div>
     </MainContent>
