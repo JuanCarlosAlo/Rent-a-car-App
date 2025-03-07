@@ -3,8 +3,10 @@ import React from 'react'
 import MainButton from '../MainButton/MainButton'
 import { Car } from '@/types/car'
 import styles from './CarInfoDetails.module.scss';
+import useAuth from '@/hooks/useAuth';
 
 const CarInfoDetails = ({car}:{car: Car}) => {
+  const { handleRedirect } = useAuth();
   return (
     <div className={styles.carDetails}>
     <div className={styles.detailSection}>
@@ -45,8 +47,9 @@ const CarInfoDetails = ({car}:{car: Car}) => {
     </div>
 
     <MainButton
-      url='/'
+     
       color="secondary"
+      onClick={handleRedirect}
     >
       Alquilar por {car.price} {car.divisa} / mes
     </MainButton>
