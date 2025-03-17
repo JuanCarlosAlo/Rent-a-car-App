@@ -12,10 +12,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname(); 
-  const { data: session, status } = useSession();
+  const {status } = useSession();
 
-  console.log("Sesión:", session);
-  console.log("Estado:", status);
 
   useEffect(() => {
     const isHome = pathname === "/";

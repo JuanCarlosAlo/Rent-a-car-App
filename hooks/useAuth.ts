@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 
-const useAuth = () => {
+const useAuth = (id:string) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -12,7 +12,7 @@ const useAuth = () => {
   };
 
   const redirectToPayment = () => {
-    router.push('/payment');
+    router.push(`/checkout/${id}`);
   };
 
   const handleRedirect = () => {

@@ -5,8 +5,32 @@ import { Car } from '@/types/car'
 import styles from './CarInfoDetails.module.scss';
 import useAuth from '@/hooks/useAuth';
 
+
+
+
+
 const CarInfoDetails = ({car}:{car: Car}) => {
-  const { handleRedirect } = useAuth();
+
+  const { handleRedirect } = useAuth(car.id);
+  
+  const handleCheckout = async () => {
+    const response = await fetch('http://localhost:3000/api/checkout-sessions/create', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+     
+    });
+  
+    const data = await response.json();
+  
+    if (data?.url) {
+    
+      handleRedirect();
+    } else {
+      console.error('No se pudo obtener la URL de checkout.');
+    }
+  };
   return (
     <div className={styles.carDetails}>
     <div className={styles.detailSection}>
@@ -49,7 +73,7 @@ const CarInfoDetails = ({car}:{car: Car}) => {
     <MainButton
      
       color="secondary"
-      onClick={handleRedirect}
+      onClick={handleCheckout}
     >
       Alquilar por {car.price} {car.divisa} / mes
     </MainButton>

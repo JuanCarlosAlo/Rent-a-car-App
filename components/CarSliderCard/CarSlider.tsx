@@ -74,8 +74,7 @@ const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
                   alt={`Car image ${index + 1}`}
                   width={500}
                   height={300}
-                  layout="responsive"
-                  objectFit="cover"
+                 
                   quality={75}
                 />
               </div>

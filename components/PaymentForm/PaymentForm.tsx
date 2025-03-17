@@ -1,7 +1,5 @@
-"use client"
-
 import React from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 import styles from './PaymentForm.module.scss';
 
 const PaymentForm = () => {
@@ -9,32 +7,45 @@ const PaymentForm = () => {
   const elements = useElements();
 
   const handleSubmit = async (event: React.FormEvent) => {
+    console.log(event)
+
+  }
+ /*  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement!,
+  
+    if (!stripe || !elements) return;
+  
+    // Crear PaymentIntent desde tu API
+    const res = await fetch('/api/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: 2000 }) // 20.00 EUR
     });
-
-    if (error) {
-      console.error(error);
+  
+    const { clientSecret } = await res.json();
+  
+    // Confirmar pago con Stripe.js
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement)!,
+      },
+    });
+  
+    if (result.error) {
+      console.error(result.error.message);
     } else {
-      console.log('PaymentMethod:', paymentMethod);
-      // Aquí puedes manejar el pago simulado
-      alert('Pago simulado realizado con éxito');
+      if (result.paymentIntent?.status === 'succeeded') {
+        console.log('¡Pago exitoso!');
+        alert('Pago de prueba realizado correctamente');
+      }
     }
-  };
+  }; */
+  
 
   return (
     <form onSubmit={handleSubmit} className={styles.paymentForm}>
-      <CardElement className={styles.cardElement} />
-      <button type="submit" className={styles.paymentButton} disabled={!stripe}>
+      <PaymentElement />
+      <button type="submit" className={styles.paymentButton} >
         Pagar
       </button>
     </form>

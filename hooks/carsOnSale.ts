@@ -43,9 +43,12 @@ export const fetchAllCards= async (): Promise<Car[]> => {
 };
 
 export const fetchCarById = async (id: string): Promise<Car> => { 
+
+  console.log(id);
   const res = await fetch(`http://localhost:3000/api/cars/${id}`, {
     next: { revalidate: 60 }, 
   });
+
 
   if (!res.ok) {
     throw new Error("Error al obtener el coche.");
