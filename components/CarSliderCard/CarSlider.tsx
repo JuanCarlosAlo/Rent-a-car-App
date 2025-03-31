@@ -18,6 +18,7 @@ interface CarSliderProps {
 }
 
 const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
+
   return (
     <Swiper
       direction="horizontal"
@@ -47,7 +48,7 @@ const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
                   alt={`${car.brand} ${car.model}`}
                   width={500}
                   height={300}
-                  layout="responsive"
+                  
                   objectFit="cover"
                   quality={75}
                 />

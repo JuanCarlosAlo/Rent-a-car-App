@@ -3,8 +3,8 @@
 import React from 'react';
 import styles from './Steps.module.scss';
 import { stepsData, stepsTitle } from '../../lib/sections/stepsData';
+import Image from 'next/image';
 import MainButton from '../MainButton/MainButton';
-import { MAIN_COLORS } from '@/lib/COLORS';
 
 const Steps = () => {
   return (
@@ -20,10 +20,12 @@ const Steps = () => {
                 Descubre nuestros coches
               </MainButton>
             </div>
-            <img
+            <Image
               src={step.image}
               alt={step.title}
               className={styles.stepImage}
+              width={100}
+          height={100}
             />
           </div>
         ))}

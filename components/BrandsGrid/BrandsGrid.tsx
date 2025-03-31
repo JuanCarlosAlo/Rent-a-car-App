@@ -2,6 +2,7 @@
 import React from 'react';
 import styles from './BrandsGrid.module.scss';
 import { brandsData, brandsTitle } from '../../lib/sections/brandsData';
+import Image from 'next/image';
 
 const BrandsGrid = () => {
   const handleBrandClick = (brand: string) => {
@@ -18,7 +19,8 @@ const BrandsGrid = () => {
             className={styles.brandCard}
             onClick={() => handleBrandClick(brand.name)}
           >
-            <img className={styles.brandLogo} src={brand.logo} alt={brand.name} />
+            <Image className={styles.brandLogo} src={brand.logo} alt={brand.name}  width={100}
+          height={100}/>
           </div>
         ))}
       </div>

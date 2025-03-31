@@ -10,18 +10,18 @@ const CarsOnSale = async () => {
   try {
     carsOnSale = await fetchCarsOnSale();
   } catch (error) {
-    console.error('Failed to fetch cars on sale:', error);
+    console.error("Failed to fetch cars on sale:", error);
   }
 
   if (!carsOnSale || carsOnSale.length === 0) {
     return <p>No hay coches en oferta actualmente.</p>;
+  } else {
+    return (
+      <div className={styles.sliderContainer}>
+        <CarSlider carsOnSale={carsOnSale} />
+      </div>
+    );
   }
-
-  return (
-    <div className={styles.sliderContainer}>
-      <CarSlider carsOnSale={carsOnSale} />
-    </div>
-  );
 };
 
 export default CarsOnSale;
