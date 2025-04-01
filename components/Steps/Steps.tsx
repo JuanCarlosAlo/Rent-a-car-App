@@ -24,8 +24,8 @@ const Steps = () => {
               src={step.image}
               alt={step.title}
               className={styles.stepImage}
-              width={100}
-          height={100}
+              width={890}
+          height={500}
             />
           </div>
         ))}

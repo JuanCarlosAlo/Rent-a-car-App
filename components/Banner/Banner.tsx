@@ -23,8 +23,8 @@ const Banner = ({ car }: { car: Car }) => {
           className={styles.bannerImage}
           src={car.cover}
           alt={`${car.brand} ${car.model}`}
-          width={100}
-          height={100}
+          width={750}
+          height={340}
         />
       </div>
     </section>

@@ -49,7 +49,7 @@ const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
                   width={500}
                   height={300}
                   
-                  objectFit="cover"
+                 /*  objectFit="cover" */
                   quality={75}
                 />
                 <div className={styles.carDetails}>
