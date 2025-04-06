@@ -1,21 +1,19 @@
 "use server";
 
+import { Car } from "@/types/car";
 import Stripe from "stripe";
-import { Car } from '@/types/car';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: "2025-02-24.acacia", 
+});
 
 export const createPaymentIntent = async (car: Car) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    typescript: true,
-    apiVersion: '2024-04-10', 
-  });
-
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: car.price , 
+    amount: car.price,
     currency: "eur",
+    automatic_payment_methods: { enabled: true }, 
     metadata: {
       carId: car.id.toString(),
-      brand: car.brand,
-      model: car.model
     },
   });
 

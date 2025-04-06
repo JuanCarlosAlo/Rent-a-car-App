@@ -8,9 +8,9 @@
   justify-content: space-between;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1500px) {
     padding: 0 1rem;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 

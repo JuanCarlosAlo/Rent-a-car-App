@@ -17,9 +17,10 @@ const CarList = ({ cars }: { cars: Car[] }) => {
               className={styles.carImage}
               src={car.cover}
               alt={`${car.brand} ${car.model}`}
+              quality={75}
               width={500}
               height={300}
-              quality={75}
+              
             />
           </Link>
           <div className={styles.carInfo}>

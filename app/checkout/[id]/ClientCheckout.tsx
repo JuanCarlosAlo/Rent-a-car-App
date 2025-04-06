@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
@@ -11,7 +11,7 @@ import { Car } from "@/types/car";
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY!);
 
 const ClientCheckout = ({ car }: { car: Car }) => {
-  const [clientSecret, setClientSecret] = useState<string | null>('');
+  const [clientSecret, setClientSecret] = useState<string | null>("");
 
   const initiatePayment = async () => {
     const paymentIntent = await createPaymentIntent(car);
@@ -20,11 +20,16 @@ const ClientCheckout = ({ car }: { car: Car }) => {
 
   return (
     <div>
-      <PaymentDetails car={car} initiatePayment={initiatePayment} />
-      {clientSecret && (
-        <Elements stripe={stripePromise} options={{ clientSecret: clientSecret }}>
+      
+      {clientSecret ? (
+        <Elements
+          stripe={stripePromise}
+          options={{ clientSecret: clientSecret }}
+        >
           <PaymentForm />
         </Elements>
+      ):(
+        <PaymentDetails car={car} initiatePayment={initiatePayment} />
       )}
     </div>
   );

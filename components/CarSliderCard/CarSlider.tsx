@@ -18,12 +18,11 @@ interface CarSliderProps {
 }
 
 const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
-
   return (
     <Swiper
       direction="horizontal"
       spaceBetween={50}
-      slidesPerView={carsOnSale ? 3 : 1}
+      slidesPerView={carsOnSale ? 3 : 1} // Mantén esta lógica para el valor inicial
       centeredSlides={true}
       loop={true}
       autoplay={{
@@ -36,7 +35,22 @@ const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
         clickable: true,
         dynamicBullets: true,
       }}
+      className={styles.swipper}
       style={{ padding: "2rem" }}
+      breakpoints={{
+        320: {
+          slidesPerView: carsOnSale ? 1 : 1, 
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: carsOnSale ? 2 : 1, 
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: carsOnSale ? 3 : 1, 
+          spaceBetween: 50,
+        },
+      }}
     >
       {carsOnSale
         ? carsOnSale.map((car) => (
@@ -48,8 +62,6 @@ const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
                   alt={`${car.brand} ${car.model}`}
                   width={500}
                   height={300}
-                  
-                 /*  objectFit="cover" */
                   quality={75}
                 />
                 <div className={styles.carDetails}>
@@ -75,7 +87,6 @@ const CarSlider = ({ carsOnSale, images }: CarSliderProps) => {
                   alt={`Car image ${index + 1}`}
                   width={500}
                   height={300}
-                 
                   quality={75}
                 />
               </div>

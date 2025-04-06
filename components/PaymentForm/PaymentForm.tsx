@@ -1,54 +1,48 @@
-import React from 'react';
-import { CardElement, useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
-import styles from './PaymentForm.module.scss';
+"use client";
+
+import { useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
+import { FormEvent, useState } from "react";
+import styles from "./PaymentForm.module.scss";
+
 
 const PaymentForm = () => {
   const stripe = useStripe();
   const elements = useElements();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    console.log(event)
-
-  }
- /*  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-  
+
     if (!stripe || !elements) return;
-  
-    // Crear PaymentIntent desde tu API
-    const res = await fetch('/api/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: 2000 }) // 20.00 EUR
-    });
-  
-    const { clientSecret } = await res.json();
-  
-    // Confirmar pago con Stripe.js
-    const result = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement)!,
+
+    setLoading(true);
+    setError(null);
+
+    const result = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: "http://localhost:3000/checkout/success", 
       },
     });
-  
+
     if (result.error) {
-      console.error(result.error.message);
-    } else {
-      if (result.paymentIntent?.status === 'succeeded') {
-        console.log('¡Pago exitoso!');
-        alert('Pago de prueba realizado correctamente');
-      }
+      setError(result.error.message || "Error al procesar el pago");
     }
-  }; */
-  
+
+    setLoading(false);
+  };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.paymentForm}>
-      <PaymentElement />
-      <button type="submit" className={styles.paymentButton} >
-        Pagar
-      </button>
-    </form>
+    <section className={styles.paymentContainer}>
+      <form onSubmit={handleSubmit} className={styles.paymentForm}>
+        <PaymentElement />
+        <button type="submit" className={styles.paymentButton} disabled={loading || !stripe || !elements}>
+          {loading ? "Procesando..." : "Pagar"}
+        </button>
+        {error && <p className={styles.errorMessage}>{error}</p>}
+      </form>
+    </section>
   );
 };
 
